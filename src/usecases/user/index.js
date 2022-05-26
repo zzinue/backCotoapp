@@ -1,4 +1,4 @@
-const User = require("../../models/user").model;
+/*const User = require("../../models/user").model;
 const encrypt = require("../../lib/encrypt");
 
 const getById = async (id) => {
@@ -29,3 +29,5 @@ module.exports = {
   getByEmail,
   authenticate,
 };
+
+*/
