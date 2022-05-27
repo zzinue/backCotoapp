@@ -57,7 +57,7 @@ router.post("/",  async (req,res,next)=>
     
 });
 
-router.put("/:id", authHandler,  async (req,res,next)=>{
+router.put("/:id", async (req,res,next)=>{
     try{
 
         const{id}= req.params;
@@ -80,7 +80,7 @@ router.put("/:id", authHandler,  async (req,res,next)=>{
     }
 })
 
-router.patch("/:id",  authHandler, async (req, res, next) => {
+router.patch("/:id",  async (req, res, next) => {
     try {
       const { id } = req.params;
   
@@ -96,7 +96,7 @@ router.patch("/:id",  authHandler, async (req, res, next) => {
     }
   });
   
-  router.delete("/:id",  authHandler, async (req, res, next) => {
+  router.delete("/:id",   async (req, res, next) => {
     try {
       const { id } = req.params;
   

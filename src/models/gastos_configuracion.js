@@ -7,7 +7,7 @@ const schema = new Schema({
      concepto: { type: String, required: true},
      monto: { type: Number, required: true},
      descripcion: { type: String, required: true},
-     imagen: { type: Bin, required: false},
+     imagen: { type: Buffer, required: false},
      seRepite:{type:Boolean,required:false,default:false},
      periodicidad: { type:String, required: false},
 
@@ -15,5 +15,5 @@ const schema = new Schema({
 
 module.exports = {
     schema,
-    model: mongoose.model("GastosC", schema),
+    model: mongoose.model("Gastos_configuracion", schema),
 }

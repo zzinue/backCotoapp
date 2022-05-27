@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
      monto: { type: Number, required: true},
      fecha_pago: { type: Date, required: true},
-     comprobante: { type: Bin, required: true},
+     comprobante: { type: Buffer, required: true},
      aprobado: { type: Boolean, required: true, default: false},
      residente:{type:String,required:true},
     
@@ -14,5 +14,5 @@ const schema = new Schema({
 
 module.exports = {
     schema,
-    model: mongoose.model("Residente", schema),
+    model: mongoose.model("Pago", schema),
 }

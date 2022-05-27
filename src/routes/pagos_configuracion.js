@@ -1,5 +1,5 @@
 const express = require("express");
-const pago_configuracion = require("../usecases/pago_configuracion");
+const pago_configuracion = require("../usecases/pagos_configuracion");
 
 const router = express.Router();
 
