@@ -8,7 +8,6 @@ const pagosRouter = require("./pagos");
 const residentesRouter = require("./residentes");
 
 const apiRouter = (app) => {
- // app.use("/users", usersRouter);
   //app.use("/auth", authRouter);
   app.use("/admin", adminRouter);
   app.use("/gastos_configuracion", gastos_configuracionRouter);
