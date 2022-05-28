@@ -2,12 +2,12 @@ const Pago = require("../../models/pago").model;
 
 const get = async () => {
     //devuelve todos los pago
-    return await Pago.find().populate("pago").exec();
+    return await Pago.find().exec();
 
 }
 
 const getById = async (id) => {
-    const pago =  await Pago.findById(id).populate("pago").exec();
+    const pago =  await Pago.findById(id).exec();
     return pago;
     //devuelve un pago
 }

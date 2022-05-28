@@ -7,6 +7,7 @@ const pagos_configuracionRouter = require("./pagos_configuracion");
 const pagosRouter = require("./pagos");
 const residentesRouter = require("./residentes");
 const queryPagoRouter = require("./queryPagos");
+const queryPagoMensualRouter = require("./queryPagosMensuales");
 
 const apiRouter = (app) => {
   app.use("/auth", authRouter);
@@ -16,7 +17,8 @@ const apiRouter = (app) => {
   app.use("/pagos_configuracion", pagos_configuracionRouter);
   app.use("/pagos", pagosRouter);
   app.use("/residentes", residentesRouter);
-  app.use("/queryPago", queryPagoRouter);
+  app.use("/queryPagos", queryPagoRouter);
+  app.use("/queryPagosMensuales", queryPagoMensualRouter);
 };
 
 module.exports = apiRouter;
