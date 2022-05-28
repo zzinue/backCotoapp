@@ -1,5 +1,9 @@
 const express = require("express");
 const residente = require("../usecases/residentes");
+const { authHandler } = require("../middlewares/authHandlers");
+const {
+  adminHandler,
+} = require("../middlewares/permissionHandlers");
 
 const router = express.Router();
 
@@ -57,7 +61,7 @@ router.post("/",  async (req,res,next)=>
     
 });
 
-router.put("/:id",  async (req,res,next)=>{
+router.put("/:id",  authHandler, async (req,res,next)=>{
     try{
 
         const{id}= req.params;
