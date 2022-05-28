@@ -1,5 +1,5 @@
-/*const express = require("express");
-const user = require("../usecases/user");
+const express = require("express");
+const residente = require("../usecases/residentes");
 const jwt = require("../lib/jwt");
 const router = express.Router();
 
@@ -7,14 +7,14 @@ router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const retrievedUser = await user.getByEmail(email);
+    const retrievedResident = await residente.getByEmail(email);
 
-    const isMatch = await user.authenticate(retrievedUser, password);
+    const isMatch = await residente.authenticate(retrievedResident, password);
 
     if (isMatch) {
       const token = await jwt.sign({
-        sub: retrievedUser._id,
-        role: retrievedUser.role,
+        sub: retrievedResident._id,
+        role: retrievedResident.permisos,
       });
 
       res.json({
@@ -31,4 +31,4 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-module.exports = router; */
+module.exports = router; 
