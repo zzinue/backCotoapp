@@ -1,24 +1,38 @@
 const Residente = require("../../models/residente").model;
+const encrypt = require("../../lib/encrypt");
 
 const get = async () => {
     //devuelve todos los residente
-    return await Residente.find().populate("residente").exec();
+    return await Residente.find().exec();
 
 }
 
 const getById = async (id) => {
-    const residente =  await Residente.findById(id).populate("residente").exec();
+    const residente =  await Residente.findById(id).exec();
+  
     return residente;
     //devuelve un residente
 }
+
+const getByEmail = async (email) => {
+    return await Residente.findOne({ email }).exec();
+  };
+
+  const authenticate = async (residente, password) => {
+    console.log("password", password)
+    console.log("residente.password", residente.password)
+    hash = residente.password;
+    return await encrypt.verifyPassword(password, hash);
+  };
+  
 
 const create = async (ResidenteData) => {
 
     const { nombre,email,casa,telefono,password,user,fecha,permisos } = ResidenteData;
 
-
+    const hash = await encrypt.hashPassword(password);
     const newResidente = new Residente({
-        nombre,email,casa,telefono,password,user,fecha,permisos
+        nombre,email,casa,telefono,password:hash,user,fecha,permisos
     });
 
     const savedResidente = await newResidente.save();
@@ -31,10 +45,11 @@ const update = async (id, ResidenteData) => {
     const { 
         nombre,email,casa,telefono,password,user,fecha,permisos } = ResidenteData;
 
+    const hash = await encrypt.hashPassword(password);
     const updatedResidente = await Residente.findByIdAndUpdate(
         id,
         {
-            nombre,email,casa,telefono,password,user,fecha,permisos
+            nombre,email,casa,telefono,password:hash,user,fecha,permisos
         },
         { new: true }
     ).exec();
@@ -64,4 +79,6 @@ module.exports = {
     update,
     del,
     patch,
+    getByEmail,
+    authenticate
 };
