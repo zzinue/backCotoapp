@@ -1,7 +1,9 @@
 const express = require("express");
 const residente = require("../usecases/residentes");
 const jwt = require("../lib/jwt");
+const { response } = require("express");
 const router = express.Router();
+const { authHandler } = require("../middlewares/authHandlers");
 
 router.post("/login", async (req, res, next) => {
   try {
@@ -29,6 +31,14 @@ router.post("/login", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+router.get("/validtoken", authHandler, async (req, res, next) =>
+{
+    response.json({
+      success: true,
+      message: "User valid"
+    })
 });
 
 module.exports = router; 

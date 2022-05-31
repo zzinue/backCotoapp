@@ -14,19 +14,11 @@ const getById = async (residente) => {
 const getByIdandMonth = async (residente,month) => {
     const pagos = await Pago.findOne({residente}).exec();
     
-
-    pagos.map((pago)=>{
-       
-        if(pago.getMonth() == month)
-        {return pago;}
-        else{
-            console.log(pago.getMonth())
-            console.log(month);
-        }
-
-    })
-    
-    return pagos;
+    console.log(pagos.fecha_pago.getMonth())
+    if(pagos.fecha_pago.getMonth() == month)
+        return pagos;
+    else
+        return null;
     //devuelve un pago
 }
 

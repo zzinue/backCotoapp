@@ -12,7 +12,12 @@ const schema = new Schema({
 	 fecha_registro: {type: Date, required: false},
 	 permisos: {type: String, required: false, default:"residente"}
 });
-
+schema.methods.toJSON = function (){
+    let residente = this.toObject();
+    delete residente._id;
+    delete residente.password;
+    return residente;
+}
 module.exports = {
     schema,
     model: mongoose.model("Residente", schema),
