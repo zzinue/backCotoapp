@@ -35,7 +35,7 @@ router.post("/login", async (req, res, next) => {
 
 router.get("/validtoken", authHandler, async (req, res, next) =>
 {
-    response.json({
+    res.json({
       success: true,
       message: "User valid"
     })
