@@ -14,7 +14,7 @@ const getById = async(id) => {
 
 const create = async(PagoData) => {
 
-    const { monto, fecha_pago, comprobante, aprobado, residente } = PagoData;
+    const { monto, fecha_pago, comprobante, aprobado, residente, pago_id } = PagoData;
 
 
     const newPago = new Pago({
@@ -22,7 +22,8 @@ const create = async(PagoData) => {
         fecha_pago,
         comprobante,
         aprobado,
-        residente
+        residente,
+        pago_id
     });
 
     const savedPago = await newPago.save();
@@ -37,7 +38,8 @@ const update = async(id, PagoData) => {
         fecha_pago,
         comprobante,
         aprobado,
-        residente
+        residente,
+        pago_id
     } = PagoData;
 
     const updatedPago = await Pago.findByIdAndUpdate(

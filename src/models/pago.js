@@ -8,7 +8,7 @@ const schema = new Schema({
     comprobante: { type: String, required: true },
     aprobado: { type: Boolean, required: true, default: false },
     residente: { type: String, required: true },
-
+    pago_id : {type:String, required: false}
 });
 
 module.exports = {

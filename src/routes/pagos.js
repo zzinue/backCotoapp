@@ -41,9 +41,9 @@ router.post("/",  async (req,res,next)=>
 
  
 
-             const {monto,fecha_pago,comprobante,aprobado,residente} = req.body;
+             const {monto,fecha_pago,comprobante,aprobado,residente,pago_id} = req.body;
         const pagoCreated = await pago.create(
-            {monto,fecha_pago,comprobante,aprobado,residente
+            {monto,fecha_pago,comprobante,aprobado,residente,pago_id
         });
     
         res.json({
@@ -64,10 +64,10 @@ router.put("/:id",  async (req,res,next)=>{
     try{
 
         const{id}= req.params;
-        const {monto,fecha_pago,comprobante,aprobado,residente} = req.body;
+        const {monto,fecha_pago,comprobante,aprobado,residente,pago_id} = req.body;
         const pagoUpdated = await pago.update(
             id,
-            {monto,fecha_pago,comprobante,aprobado,residente
+            {monto,fecha_pago,comprobante,aprobado,residente,pago_id
         });
     
         res.json({
