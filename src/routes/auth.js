@@ -4,6 +4,7 @@ const jwt = require("../lib/jwt");
 const { response } = require("express");
 const router = express.Router();
 const { authHandler } = require("../middlewares/authHandlers");
+const { adminHandler } = require("../middlewares/permissionHandlers");
 
 router.post("/login", async (req, res, next) => {
   try {
@@ -38,6 +39,14 @@ router.get("/validtoken", authHandler, async (req, res, next) =>
     res.json({
       success: true,
       message: "User valid"
+      })
+});
+
+router.get("/isAdmin", adminHandler, async (req, res, next) =>
+{
+    res.json({
+      success: true,
+      message: "admin permisos"
     })
 });
 
