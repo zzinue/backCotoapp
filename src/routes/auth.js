@@ -1,5 +1,6 @@
 const express = require("express");
 const residente = require("../usecases/residentes");
+const admin = require('../usecases/admin')
 const jwt = require("../lib/jwt");
 const { response } = require("express");
 const router = express.Router();
@@ -12,9 +13,17 @@ router.post("/login", async (req, res, next) => {
 
     const retrievedResident = await residente.getByEmail(email);
 
-    const isMatch = await residente.authenticate(retrievedResident, password);
 
-    if (isMatch) {
+    if (retrievedResident) {
+      const isMatch = await residente.authenticate(retrievedResident, password);
+
+
+      if (!isMatch) {
+        res
+          .status(401)
+          .json({ success: false, message: "Credenciales incorrectas" });
+
+      }
       const token = await jwt.sign({
         sub: retrievedResident._id,
         role: retrievedResident.permisos,
@@ -24,30 +33,55 @@ router.post("/login", async (req, res, next) => {
         success: true,
         payload: token,
       });
-    } else {
-      res
-        .status(401)
-        .json({ success: false, message: "Credenciales incorrectas" });
+      return;
     }
+    const retrievedAdmin = await admin.getAdminByUser(email)
+    if (retrievedAdmin) {
+      console.log(retrievedAdmin);
+
+
+
+      if (retrievedAdmin.password !== String(password)) {
+
+        res
+          .status(401)
+          .json({ success: false, message: "Credenciales incorrectas" });
+        return
+      }
+      const token = await jwt.sign({
+        sub: retrievedAdmin._id,
+        // role: retrievedResident.permisos,
+      });
+
+      res.json({
+        success: true,
+        payload: token,
+      });
+      return;
+    }
+
+
+    res
+      .status(401)
+      .json({ success: false, message: "Credenciales incorrectas" });
+
   } catch (error) {
     next(error);
   }
 });
 
-router.get("/validtoken", authHandler, async (req, res, next) =>
-{
-    res.json({
-      success: true,
-      message: "User valid"
-      })
+router.get("/validtoken", authHandler, async (req, res, next) => {
+  res.json({
+    success: true,
+    message: "User valid"
+  })
 });
 
-router.get("/isAdmin", adminHandler, async (req, res, next) =>
-{
-    res.json({
-      success: true,
-      message: "admin permisos"
-    })
+router.get("/isAdmin", adminHandler, async (req, res, next) => {
+  res.json({
+    success: true,
+    message: "admin permisos"
+  })
 });
 
 module.exports = router; 

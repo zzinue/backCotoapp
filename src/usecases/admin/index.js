@@ -5,20 +5,25 @@ const get = async () => {
     return await Admin.find().populate("admin").exec();
 
 }
+const getAdminByUser = async (user) => {
+    return await Admin.findOne({
+        user
+    })
+}
 
 const getById = async (id) => {
-    const admin =  await Admin.findById(id).populate("admin").exec();
+    const admin = await Admin.findById(id).populate("admin").exec();
     return admin;
     //devuelve un admin
 }
 
 const create = async (AdminData) => {
 
-    const { user,password } = AdminData;
+    const { user, password } = AdminData;
 
 
     const newAdmin = new Admin({
-       user,password
+        user, password
     });
 
     const savedAdmin = await newAdmin.save();
@@ -28,14 +33,14 @@ const create = async (AdminData) => {
 
 const update = async (id, AdminData) => {
     // actualizar admin
-    const { 
-        user,password } = AdminData;
+    const {
+        user, password } = AdminData;
 
     const updatedAdmin = await Admin.findByIdAndUpdate(
         id,
         {
-           user,
-           password
+            user,
+            password
         },
         { new: true }
     ).exec();
@@ -52,7 +57,7 @@ const patch = async (id, AdminData) => {
 };
 
 const del = async (id) => {
-     
+
 
     return await Admin.findByIdAndDelete(id).exec();
 };
@@ -64,4 +69,5 @@ module.exports = {
     update,
     del,
     patch,
+    getAdminByUser
 };
