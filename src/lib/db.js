@@ -5,6 +5,7 @@ const connect = () => {
   return new Promise((resolve, reject) => {
     mongoose.connect(
       `mongodb+srv://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.baseCollection}?retryWrites=true&w=majority`,
+
       { useNewUrlParser: true }
     );
 

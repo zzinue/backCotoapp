@@ -6,8 +6,14 @@ const db = require("./src/lib/db");
 const config = require("./src/lib/config")
 const app = express();
 const port = config.app.port;
+const fileUpload = require('express-fileupload')
+const imageToBase64 = require('image-to-base64');
 
 app.use(cors({}));
+app.use(fileUpload({ useTempFiiesl: true }))
+app.post('/upload/image', (req, res) => {
+    res.json({ ok: true })
+})
 
 app.use(express.json());
 
