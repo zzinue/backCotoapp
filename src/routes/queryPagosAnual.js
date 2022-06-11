@@ -7,13 +7,18 @@ const {
 
 const router = express.Router();
 
-router.get("/:id/:year", async (req, res,next)=>{
+router.get("/:year", async (req, res,next)=>{
     try{
 
-    const{id}= req.params;
+        const { token } = req.headers;
+
+        const verifiedToken = await jwt.verify(token);
+      
+    const { sub } = verifiedToken
+         
     const{year}= req.params;
     console.log("queryPago",id, year)
-    const queryPagos = await queryPago.getByIdandYear(id,year);    
+    const queryPagos = await queryPago.getByIdandYear(sub,year);    
     res.json({success: true,
         payload: queryPagos});
     }catch(error)

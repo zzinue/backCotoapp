@@ -4,14 +4,19 @@ const { authHandler } = require("../middlewares/authHandlers");
 const {
   adminHandler,
 } = require("../middlewares/permissionHandlers");
+const jwt = require("../lib/jwt");
 
 const router = express.Router();
 
-router.get("/:id", async (req, res,next)=>{
+router.get("/", async (req, res,next)=>{
     try{
 
-    const{id}= req.params;
-    const queryPagos = await queryPago.getById(id);    
+        const { token } = req.headers;
+
+        const verifiedToken = await jwt.verify(token);
+      
+    const { sub } = verifiedToken
+    const queryPagos = await queryPago.getById(sub);    
     res.json({success: true,
         payload: queryPagos});
     }catch(error)

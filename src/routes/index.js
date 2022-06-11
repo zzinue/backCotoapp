@@ -1,6 +1,5 @@
 //const usersRouter = require("./users");
 const authRouter = require("./auth");
-const adminRouter = require("./admin");
 const gastos_configuracionRouter = require("./gastos_configuracion");
 const gastosRouter = require("./gastos");
 const pagos_configuracionRouter = require("./pagos_configuracion");
@@ -17,7 +16,6 @@ const queryGastoAnualRouter = require("./queryGastosAnual");
 
 const apiRouter = (app) => {
   app.use("/auth", authRouter);
-  app.use("/admin", adminRouter);
   app.use("/gastos_configuracion", gastos_configuracionRouter);
   app.use("/gastos", gastosRouter);
   app.use("/pagos_configuracion", pagos_configuracionRouter);
