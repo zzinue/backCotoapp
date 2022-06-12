@@ -42,10 +42,9 @@ router.post("/",  async (req,res,next)=>
 {
     try{
 
-        const {nombre,email,casa,telefono,password,user,fecha,permisos} = req.body;
+        const {nombre,email,casa,telefono} = req.body;
         const residenteCreated = await residente.create(
-            {nombre,email,casa,telefono,password,user,fecha,permisos
-        });
+            {nombre,email,casa,telefono});
     
         res.json({
             success: true,

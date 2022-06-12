@@ -28,12 +28,17 @@ const getByEmail = async (email) => {
 
 const create = async (ResidenteData) => {
 
-    const { nombre,email,casa,telefono,password,user,fecha,permisos } = ResidenteData;
+    const { nombre,email,casa,telefono } = ResidenteData;
+
+    const values = email.split('@');
+    const password = values[0];
+    console.log("password", password);
+    const user = casa;
+    const fecha =  new Date();
 
     const hash = await encrypt.hashPassword(password);
     const newResidente = new Residente({
-        nombre,email,casa,telefono,password:hash,user,fecha,permisos
-    });
+        nombre,email,casa,telefono,password:hash,user,fecha});
 
     const savedResidente = await newResidente.save();
     // Logica para guardar en la base de datos
