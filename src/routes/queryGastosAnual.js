@@ -12,7 +12,7 @@ router.get("/:year", async (req, res,next)=>{
 
     
     const{year}= req.params;
-    console.log("queryGasto", year)
+  
     const queryGastos = await queryGasto.getByYear(year);    
     res.json({success: true,
         payload: queryGastos});

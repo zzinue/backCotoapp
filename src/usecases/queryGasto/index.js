@@ -14,7 +14,7 @@ const get = async () => {
 const getByMonth = async (month) => {
     const gastos = await Gasto.find().exec();
     gastos_new =[];
-    console.log(gastos.length)
+   
     gastos.map((gasto)=>{
 
         if(gasto.fecha_gasto.getMonth() == month)
@@ -29,9 +29,9 @@ const getByMonth = async (month) => {
 const getByYear = async (year) => {
     const gastos = await Gasto.find().exec();
     gastos_new =[];
-    console.log(gastos.length)
+   
     gastos.map((gasto)=>{
-        console.log(gasto.fecha_gasto.getFullYear())
+       
         if(gasto.fecha_gasto.getFullYear() == year)
         gastos_new.push(gasto);
   

@@ -14,7 +14,7 @@ const schema = new Schema({
 });
 schema.methods.toJSON = function (){
     let residente = this.toObject();
-    delete residente._id;
+    
     delete residente.password;
     return residente;
 }

@@ -17,7 +17,7 @@ router.get("/:year", async (req, res,next)=>{
     const { sub } = verifiedToken
          
     const{year}= req.params;
-    console.log("queryPago",id, year)
+
     const queryPagos = await queryPago.getByIdandYear(sub,year);    
     res.json({success: true,
         payload: queryPagos});

@@ -11,7 +11,7 @@ router.get("/:month", async (req, res,next)=>{
     try{
 
     const{month}= req.params;
-    console.log("queryGasto", month)
+  
     const queryGastos = await queryGasto.getByMonth(month);    
     res.json({success: true,
         payload: queryGastos});

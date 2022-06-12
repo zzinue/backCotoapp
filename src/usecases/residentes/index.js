@@ -27,8 +27,7 @@ const getByEmail = async (email) => {
   };
 
   const authenticate = async (residente, password) => {
-    console.log("password", password)
-    console.log("residente.password", residente.password)
+  
     hash = residente.password;
     return await encrypt.verifyPassword(password, hash);
   };
@@ -40,7 +39,7 @@ const create = async (ResidenteData) => {
 
     const values = email.split('@');
     const password = values[0];
-    console.log("password", password);
+   
     const user = casa;
     const fecha =  new Date();
 
