@@ -21,6 +21,20 @@ router.get("/:id", async (req, res,next)=>{
     }
 })
 
+router.post("/:nombre", async (req, res,next)=>{
+  try{
+
+  const{nombre}= req.params;
+  const residentes = await residente.getByName(nombre);    
+  res.json({success: true,
+      payload: residentes});
+  }catch(error)
+  {
+      next(error);
+
+  }
+})
+
 router.get("/",  async (req,res,next)=>{
     try{
 

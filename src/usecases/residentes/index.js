@@ -14,6 +14,14 @@ const getById = async (id) => {
     //devuelve un residente
 }
 
+const getByName = async (nombre) => {
+    const residente =  await Residente.find({nombre}).exec();
+  
+    return residente;
+    //devuelve un residente
+}
+
+
 const getByEmail = async (email) => {
     return await Residente.findOne({ email }).exec();
   };
@@ -80,6 +88,7 @@ const del = async (id) => {
 module.exports = {
     get,
     getById,
+    getByName,
     create,
     update,
     del,
