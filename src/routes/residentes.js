@@ -58,7 +58,7 @@ router.post("/",  async (req,res,next)=>
 
         let {nombre,email,casa,telefono} = req.body;
         const upper_nombre = nombre.toUpperCase();
-        console.log(upper_nombre)
+
         nombre = upper_nombre;
         const residenteCreated = await residente.create(
             {nombre,email,casa,telefono});
@@ -77,14 +77,16 @@ router.post("/",  async (req,res,next)=>
     
 });
 
-router.put("/:id",  authHandler, async (req,res,next)=>{
+router.put("/:id",  async (req,res,next)=>{
     try{
 
         const{id}= req.params;
-        const {nombre,email,casa,telefono,password,user,fecha,permisos} = req.body;
+        let {nombre,email,casa,telefono} = req.body;
+        const upper_nombre = nombre.toUpperCase();
+        nombre = upper_nombre;
         const residenteUpdated = await residente.update(
             id,
-            {nombre,email,casa,telefono,password,user,fecha,permisos
+            {nombre,email,casa,telefono
         });
     
         res.json({

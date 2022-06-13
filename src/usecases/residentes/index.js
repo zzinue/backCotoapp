@@ -55,13 +55,19 @@ const create = async (ResidenteData) => {
 const update = async (id, ResidenteData) => {
     // actualizar residente
     const { 
-        nombre,email,casa,telefono,password,user,fecha,permisos } = ResidenteData;
+        nombre,email,casa,telefono } = ResidenteData;
+
+        const values = email.split('@');
+        const password = values[0];
+
+        const user = casa;
+        const fecha =  new Date();
 
     const hash = await encrypt.hashPassword(password);
     const updatedResidente = await Residente.findByIdAndUpdate(
         id,
         {
-            nombre,email,casa,telefono,password:hash,user,fecha,permisos
+            nombre,email,casa,telefono,password:hash,user,fecha
         },
         { new: true }
     ).exec();
