@@ -25,7 +25,7 @@ router.post("/:nombre", async (req, res,next)=>{
   try{
 
   const{nombre}= req.params;
-  const residentes = await residente.getByName(nombre);    
+  const residentes = await residente.getByName(nombre.toUpperCase());    
   res.json({success: true,
       payload: residentes});
   }catch(error)
@@ -56,7 +56,10 @@ router.post("/",  async (req,res,next)=>
 {
     try{
 
-        const {nombre,email,casa,telefono} = req.body;
+        let {nombre,email,casa,telefono} = req.body;
+        const upper_nombre = nombre.toUpperCase();
+        console.log(upper_nombre)
+        nombre = upper_nombre;
         const residenteCreated = await residente.create(
             {nombre,email,casa,telefono});
     
