@@ -37,7 +37,7 @@ router.post("/login", async (req, res, next) => {
     }
     const retrievedAdmin = await admin.getAdminByUser(email)
     if (retrievedAdmin) {
-      console.log(retrievedAdmin);
+      
 
 
 
