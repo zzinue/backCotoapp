@@ -58,7 +58,7 @@ router.post("/", async (req, res, next) => {
         res.json({
             success: true,
             message: 'Administrador creado',
-            payload: savedAdministrador
+            payload: adminCreated
         });
     } catch (error) {
         next(error);
