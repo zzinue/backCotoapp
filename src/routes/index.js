@@ -11,6 +11,7 @@ const queryPagoAnualRouter = require("./queryPagosAnual");
 const queryGastoRouter = require("./queryGastos");
 const queryGastoMensualRouter = require("./queryGastosMensuales");
 const queryGastoAnualRouter = require("./queryGastosAnual");
+const administradoresRouter = require("./administradores");
 
 
 
@@ -27,6 +28,7 @@ const apiRouter = (app) => {
   app.use("/queryGastos", queryGastoRouter);
   app.use("/queryGastosMensuales", queryGastoMensualRouter);
   app.use("/queryGastosAnual", queryGastoAnualRouter);
+  app.use("/administradores", administradoresRouter);
 };
 
 module.exports = apiRouter;
