@@ -31,6 +31,8 @@ const getByEmail = async (email) => {
     hash = residente.password;
     return await encrypt.verifyPassword(password, hash);
   };
+
+ 
   
 
 const create = async (ResidenteData) => {

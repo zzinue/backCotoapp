@@ -6,8 +6,11 @@ const authHandler = async (req, res, next) => {
 
     const verifiedToken = await jwt.verify(token);
     req.params.tokenPayload = verifiedToken;
+
+    const { role } = req.params.tokenPayload;
+
     
-    
+
 
     next();
   } catch (error) {
@@ -17,5 +20,7 @@ const authHandler = async (req, res, next) => {
     });
   }
 };
+
+
 
 module.exports = { authHandler };
