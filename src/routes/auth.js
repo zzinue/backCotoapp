@@ -24,7 +24,7 @@ const { adminHandler } = require("../middlewares/permissionHandlers");
             role: retrievedResident.permisos,
           });
     
-          console.log(retrievedResident.permisos)
+         
           res.json({
             success: true,
             payload: token,

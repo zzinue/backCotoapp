@@ -7,7 +7,7 @@ const schema = new Schema({
     fecha_pago: { type: Date, required: true },
     comprobante: { type: String, required: true },
     aprobado: { type: Boolean, required: true, default: false },
-    residente: { type: String, required: true },
+    casa: { type: Number, required: true },
     pago_id : {type:String, required: false}
 });
 

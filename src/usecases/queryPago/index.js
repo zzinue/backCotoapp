@@ -9,6 +9,38 @@ const getById = async (residente) => {
     //devuelve un pago
 }
 
+const getByMonth = async (month) => {
+    const pagos =  await Pago.find().exec();
+    
+    pagos_residentes =[];
+  
+    pagos.map((pago)=>{
+
+        if(pago.fecha_pago.getMonth() == month)
+        pagos_residentes.push(pago);
+  
+    })
+    return pagos_residentes;
+  
+}
+
+const getByYear = async (year) => {
+    const pagos =  await Pago.find().exec();
+    
+    pagos_residentes =[];
+  
+    pagos.map((pago)=>{
+        
+        if(pago.fecha_pago.getFullYear() == year)
+        pagos_residente.push(pago);
+  
+    })
+    return pagos_residentes;
+  
+}
+
+
+
 
 
 const getByIdandMonth = async (residente,month) => {
@@ -46,6 +78,8 @@ module.exports = {
    
     getById,
     getByIdandMonth,
-    getByIdandYear
+    getByIdandYear,
+    getByMonth,
+    getByYear
    
 };
