@@ -51,9 +51,9 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
     try {
 
-        let { nombre, email, nombreCoto, password, logo } = req.body;
+        let { nombre, email, casa, telefono, nombreCoto } = req.body;
         const adminCreated = await administrador.create({
-            nombre, email, nombreCoto, password, logo
+            nombre, email, casa, telefono, nombreCoto
         });
         res.json({
             success: true,
@@ -69,9 +69,9 @@ router.put("/:id", async (req, res, next) => {
     try {
 
         const { id } = req.params;
-        let { nombre, email, nombreCoto, password, logo } = req.body;
+        let { nombre, email, casa, telefono, nombreCoto } = req.body;
         const adminUpdated = await administrador.update(id, {
-            nombre, email, nombreCoto, password, logo
+            nombre, email, casa, telefono, nombreCoto
         });
         res.json({
             success: true,
