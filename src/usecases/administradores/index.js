@@ -20,19 +20,18 @@ const authenticate = async (administrador, password) => {
 }
 
 const create = async (AdministradorData) => {
-    const { nombre, email, nombreCoto, password, logo } = AdministradorData;
-    const hash = await encrypt.hashPassword(password);
+    const { nombre, email, casa, telefono, nombreCoto } = AdministradorData;
     const newAdministrador = new Administrador({
-        nombre, email, nombreCoto, password: hash, logo
+        nombre, email, casa, telefono, nombreCoto
     });
     const savedAdministrador = await newAdministrador.save();
     return savedAdministrador;
 }
 const update = async (id, AdministradorData) => {
-    const { nombre, email, nombreCoto, password, logo } = AdministradorData;
+    const { nombre, email, casa, telefono, nombreCoto } = AdministradorData;
     const hash = await encrypt.hashPassword(password);
     const updatedAdministrador = await Administrador.findByIdAndUpdate(id, {
-        nombre, email, nombreCoto, password: hash, logo
+        nombre, email, casa, telefono, nombreCoto
     });
     return updatedAdministrador;
 }
