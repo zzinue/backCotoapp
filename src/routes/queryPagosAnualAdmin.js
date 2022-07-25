@@ -12,7 +12,7 @@ router.get("/:year", async (req, res,next)=>{
 
     const{year}= req.params;
 
-    const queryPagos = await queryPago.getByIdandYear(year);    
+    const queryPagos = await queryPago.getByYear(year);    
     res.json({success: true,
         payload: queryPagos});
     }catch(error)

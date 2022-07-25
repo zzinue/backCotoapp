@@ -8,6 +8,7 @@ const schema = new Schema({
     casa: { type: Number, required: true },
     telefono: { type: Number, required: true },
     nombreCoto: { type: String, required: true },
+
 });
 
 schema.methods.toJSON = function () {

@@ -12,7 +12,7 @@ const getById = async (residente) => {
 const getByMonth = async (month) => {
     const pagos =  await Pago.find().exec();
     
-    pagos_residentes =[];
+    let pagos_residentes =[];
   
     pagos.map((pago)=>{
 
@@ -27,12 +27,12 @@ const getByMonth = async (month) => {
 const getByYear = async (year) => {
     const pagos =  await Pago.find().exec();
     
-    pagos_residentes =[];
+    let pagos_residentes =[];
   
     pagos.map((pago)=>{
         
         if(pago.fecha_pago.getFullYear() == year)
-        pagos_residente.push(pago);
+        pagos_residentes.push(pago);
   
     })
     return pagos_residentes;
@@ -45,7 +45,7 @@ const getByYear = async (year) => {
 
 const getByIdandMonth = async (residente,month) => {
     const pagos = await Pago.find({residente}).exec();
-    pagos_residente =[];
+    let pagos_residente =[];
   
     pagos.map((pago)=>{
 
@@ -60,7 +60,7 @@ const getByIdandMonth = async (residente,month) => {
 
 const getByIdandYear = async (residente,year) => {
     const pagos = await Pago.find({residente}).exec();
-    pagos_residente =[];
+    let pagos_residente =[];
    
     pagos.map((pago)=>{
         

@@ -1,5 +1,6 @@
 const express = require("express");
 const pago = require("../usecases/pago");
+const fs = require('fs');
 
 
 const router = express.Router();
@@ -41,7 +42,14 @@ router.post("/",  async (req,res,next)=>
 
  
 
-             const {monto,fecha_pago,comprobante,aprobado,casa,pago_id} = req.body;
+   
+             const {monto,fecha_pago,comprobante,aprobado,casa,pago_id,data} = req.body;
+             const pago = data;
+             console.log("pago",pago);
+             const buffer = fs.readFileSync(pago.tempFilePath);
+             const base64 = buffer.toString('base64');
+             comprobante = base64;
+             
         const pagoCreated = await pago.create(
             {monto,fecha_pago,comprobante,aprobado,casa,pago_id
         });
@@ -50,6 +58,7 @@ router.post("/",  async (req,res,next)=>
             success: true,
             message: "pago creado", 
             payload: pagoCreated,
+            base64: base64,
         });
 
     }catch(error)
