@@ -14,6 +14,10 @@ const config = {
     host: process.env.DB_HOST,
     baseCollection: process.env.DB_BASE_COLLECTION,
   },
+  aws:{
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+  }
 };
 
 module.exports = config;
